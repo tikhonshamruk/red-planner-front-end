@@ -12,7 +12,8 @@ const options:CreateAxiosDefaults={
     withCredentials: true
 } 
 
-const axiosWithAuth = axios.create(options )
+const axiosClassic = axios.create(options)
+const axiosWithAuth = axios.create(options)
 
 axiosWithAuth.interceptors.request.use(config=>{
     const accessToken = getAccessToken()
@@ -31,20 +32,21 @@ axiosWithAuth.interceptors.response.use(
             error.response?.data?.message === 'jwt expired' || 
             error.message === 'jwt must be provided')
              && originalRequest && !originalRequest._isRetry
-        ){
-            originalRequest._isRetry = true
-            try{
-                await authService.getNewToken()
-                return axiosWithAuth.request(originalRequest)
-            }
-            catch(error){
-                    removeToken()
-                    return Promise.reject(error);
-            }
-        }
+        )
+        // {
+        //     originalRequest._isRetry = true
+        //     try{
+        //         await authService.getNewToken()
+        //         return axiosWithAuth.request(originalRequest)
+        //     }
+        //     catch(error){
+        //             removeToken()
+        //             return Promise.reject(error);
+        //     }
+        // }
         return Promise.reject(error)
     }
     
 )
 
-export { axiosWithAuth}
+export {axiosClassic, axiosWithAuth}
