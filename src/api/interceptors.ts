@@ -1,7 +1,8 @@
-import { config } from 'process';
-import { getAccessToken } from "@/services/auth-token.service";
+import { getAccessToken, removeToken } from "@/services/auth-token.service";
 import axios, { CreateAxiosDefaults } from "axios";
-import { error } from 'console';
+import { authService } from '@/services/auth.service';
+
+
 
 const options:CreateAxiosDefaults={
     baseURL: 'http://localhost:4200/api',
@@ -21,12 +22,29 @@ axiosWithAuth.interceptors.request.use(config=>{
 
     return config 
 })
-
 axiosWithAuth.interceptors.response.use(
-    // config => config,
-    // async error=>{
-    //     const originalRequest = error.config}
-        
-    // if(error?.response?.status === 401 || errorCatch(error)==='jwt expired')
+    response => response, // Directly return successful responses.
+    async error=>{
+        const originalRequest = error.config
+
+        if((error?.response?.status === 401 || 
+            error.response?.data?.message === 'jwt expired' || 
+            error.message === 'jwt must be provided')
+             && originalRequest && !originalRequest._isRetry
+        ){
+            originalRequest._isRetry = true
+            try{
+                await authService.getNewToken()
+                return axiosWithAuth.request(originalRequest)
+            }
+            catch(error){
+                    removeToken()
+                    return Promise.reject(error);
+            }
+        }
+        return Promise.reject(error)
+    }
     
 )
+
+export { axiosWithAuth}
