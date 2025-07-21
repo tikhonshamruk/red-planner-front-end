@@ -4,5 +4,14 @@ import { saveTokenStorage } from "./auth-token.service"
 export const authService = {
     async register(data: AuthDto){
         const response = await axiosClassic.post<AuthResponse>('/auth/register',data)
+
+        return response
+    },
+
+    async login(data:AuthDto){
+        const response = await axiosClassic.post<AuthResponse>('/auth/login',data)
+        return response
     }
+
+    
 }
