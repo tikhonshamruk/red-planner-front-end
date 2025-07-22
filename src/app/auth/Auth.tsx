@@ -1,6 +1,18 @@
 'use client'
 
-export function Auth(){
+import { AuthDto } from "@/types/auth.types"
+import { useForm } from "react-hook-form"
 
-    return <div>Auth</div>
-}
+export function Auth(){
+    const {register, handleSubmit} = useForm()
+
+    const OnSubmit = (data:any) => console.log(data)
+    
+    return (<div className="bg-blue-500">
+        <form onSubmit={handleSubmit(OnSubmit)} >
+            <input type="text" {...register('name',{required: "Name issss required!"})}/>
+            <input />
+            <button type="submit">Run</button>
+        </form>
+    </div>)
+} 

@@ -2,6 +2,6 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>Fish</div>
+    <div className="bg-blue-500">Fish</div>
   );
 }
