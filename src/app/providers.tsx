@@ -14,6 +14,7 @@ export function Providers({children }: PropsWithChildren) {
         }
     })
   )
+  //client - центральное хранилище для кеширования данных
 
   return (
     <QueryClientProvider client={client}>

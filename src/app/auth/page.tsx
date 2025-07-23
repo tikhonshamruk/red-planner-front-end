@@ -8,7 +8,5 @@ export const metadata: Metadata = {
 }
 
 export default function AuthPage(){
-    return <div className="bg-blue-500">Auth
-        <Auth></Auth>
-    </div>
+    return <Auth/>
 }
