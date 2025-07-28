@@ -2,16 +2,12 @@ import { axiosClassic } from '@/api/interceptors';
 import { AuthDto, AuthResponse } from "@/types/auth.types"
 import { saveTokenStorage } from "./auth-token.service"
 export const authService = {
-    async register(data: AuthDto){
-        const response = await axiosClassic.post<AuthResponse>('/auth/register',data)
+   
+    async main(type: 'login'| 'register', data: AuthDto){
+         console.log('im here')
+        const response = await axiosClassic.post<AuthResponse>(`/auth/register/${type}`,data)
 
-        return response
-    },
-
-    async login(data:AuthDto){
-        const response = await axiosClassic.post<AuthResponse>('/auth/login',data)
         return response
     }
 
-    
 }
