@@ -11,10 +11,9 @@ import InputField from '@/components/ui/field/Field'
 import { AuthDto } from '@/types/auth.types'
 
 export function Auth() {
-	const { register, handleSubmit, reset } = useForm<AuthDto>()
+	const { register, handleSubmit, reset, formState: {errors} } = useForm<AuthDto>()
 
-	const onSubmit: SubmitHandler<AuthDto> = data => console.log(data)
-
+	
 	const [isLoginForm, setIsLoginForm] = useState(false)
 
 	const { mutate } = useMutation({
@@ -23,13 +22,22 @@ export function Auth() {
 			authService.main(isLoginForm ? 'login' : 'register', data),
 		onSuccess() {
 			console.log('Ура все круто!')
+			reset()
+		},
+		onError(error){
+			console.error('Произошла ошибка:', error)
 		}
 	})
 
+	const onSubmit: SubmitHandler<AuthDto> = data => {
+		console.log('Данные формы:', data);
+		mutate(data);
+	}
+
 	return (
-		<div className='flex min-h-screen'>
+		<div className='flex min-h-screen '>
 			<form
-				className='w-1/4 m-auto shadow bg-sidebar rounded-xl p-layout'
+				className='w-1/4 m-auto text-white bg-sidebar rounded-xl p-layout'
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<div>
@@ -45,19 +53,23 @@ export function Auth() {
 					{...register('email', {
 						required: 'Email is required'
 					})}
+					error= {errors.email?.message}
 				/>
 
 				<InputField
 					id='password'
-					label='password:'
+					label='Password:'
 					placeholder='Enter password:'
 					type='password'
 					{...register('password', {
-						required: 'Password is required1'
+						required: 'Password is required'
 					})}
 				/>
-				<Button onClick={() => setIsLoginForm(true)}>Login</Button>
-				<Button onClick={() => setIsLoginForm(false)}>Register</Button>
+				<div className='flex items-center gap-5 mt-4 justify-center'>
+					<Button type='submit' onClick={() => setIsLoginForm(true)}>Login</Button>
+				<Button type='submit' onClick={() => setIsLoginForm(false)}>Register</Button>
+				</div>
+				
 			</form>
 		</div>
 	)

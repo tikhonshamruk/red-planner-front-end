@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-	--background: #ffffff;
+	--foreground-rgb: 0, 0, 0;
 	--foreground: #171717;
 }
 
@@ -18,8 +18,7 @@ body {
 	@apply text-base overflow-hidden;
 	font-family: var(--font-zen), sans-serif;
 	color: rgb(var(--foreground-rgb));
-	background-color: rgb(56, 56, 77);
-	//  
+	background-color: #0e0f0f;
 
 	@media (max-width: 1200px) {
 		font-size: 16px;

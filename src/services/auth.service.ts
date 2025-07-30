@@ -5,7 +5,7 @@ export const authService = {
    
     async main(type: 'login'| 'register', data: AuthDto){
          console.log('im here')
-        const response = await axiosClassic.post<AuthResponse>(`/auth/register/${type}`,data)
+        const response = await axiosClassic.post<AuthResponse>(`/auth/${type}`,data)
 
         return response
     }
