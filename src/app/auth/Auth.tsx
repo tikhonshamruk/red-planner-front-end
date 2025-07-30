@@ -9,12 +9,16 @@ import { Button } from '@/components/ui/buttons/Button'
 import InputField from '@/components/ui/field/Field'
 
 import { AuthDto } from '@/types/auth.types'
+import { useRouter } from 'next/navigation'
+import { DASHBOARD_PAGES } from '@/config/pages-url.config'
 
 export function Auth() {
 	const { register, handleSubmit, reset, formState: {errors} } = useForm<AuthDto>()
 
 	
 	const [isLoginForm, setIsLoginForm] = useState(false)
+
+	const router = useRouter()
 
 	const { mutate } = useMutation({
 		mutationKey: ['auth'],
@@ -23,6 +27,7 @@ export function Auth() {
 		onSuccess() {
 			console.log('Ура все круто!')
 			reset()
+			router.push(DASHBOARD_PAGES.HOME)
 		},
 		onError(error){
 			console.error('Произошла ошибка:', error)
