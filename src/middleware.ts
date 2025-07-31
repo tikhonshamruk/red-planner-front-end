@@ -7,16 +7,21 @@ export async function middleware(
 ){
     const {url, cookies} = request
 
-    console.log(url, cookies)
-
     const accessToken = cookies.get('accessToken')?.value
 
-    const isDashboardPage = url.includes('/i')
-    const isAuthPage = url.includes('/auth')
+    console.log('accessToken will be', accessToken)
+
+    const isAuthPage = url.includes('/auth') // это показывает на какой мы странице
 
     if(isAuthPage && accessToken){
-        return NextResponse.redirect(new URL(DASHBOARD_PAGES.HOME))
+        return NextResponse.redirect(new URL(DASHBOARD_PAGES.HOME,url))
+    }// если пользователь на isAuthPage и имеет токен, тогда перенаправляем его
+
+    if(!isAuthPage && !accessToken){
+        return NextResponse.redirect(new URL('auth',url))
     }
+    
+    return NextResponse.next()
 }
 
 export const config = {

@@ -25,7 +25,6 @@ export function Auth() {
 		mutationFn: (data: AuthDto) =>
 			authService.main(isLoginForm ? 'login' : 'register', data),
 		onSuccess() {
-			console.log('Ура все круто!')
 			reset()
 			router.push(DASHBOARD_PAGES.HOME)
 		},
@@ -71,11 +70,24 @@ export function Auth() {
 					})}
 				/>
 				<div className='flex items-center gap-5 mt-4 justify-center'>
-					<Button type='submit' onClick={() => setIsLoginForm(true)}>Login</Button>
-				<Button type='submit' onClick={() => setIsLoginForm(false)}>Register</Button>
+					{/* <Button type='submit' onClick={() => setIsLoginForm(true)}>Login</Button>
+				<Button type='submit' onClick={() => setIsLoginForm(false)}>Register</Button> */}
+				<Button type="submit">{
+					isLoginForm ? 'Login' :'Register'
+					}
+				</Button>
 				</div>
 				
 			</form>
+
+			 <div className='mt-4 text-center'>
+          <Button 
+            onClick={() => setIsLoginForm(!isLoginForm)}
+            className='text-sm text-blue-400 hover:underline'
+          >
+            {isLoginForm ? 'Need to register?' : 'Already have an account?'}
+          </Button>
+        </div>
 		</div>
 	)
 }
