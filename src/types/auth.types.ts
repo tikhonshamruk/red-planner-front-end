@@ -14,9 +14,21 @@ export interface AuthResponse{
     intervalsCount?: number
 }
 
+
+
 export interface BothRespones{
     user: AuthResponse,
     accessToken?: string
+}
+
+/*--------------Profile-------------*/
+
+export interface ProfileDto{
+    user: AuthResponse,
+    statistics: {
+        labe: string,
+        value: string
+    }[]
 }
 
 

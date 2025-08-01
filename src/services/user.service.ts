@@ -1,9 +1,9 @@
 import { axiosWithAuth } from "@/api/interceptors"
-import { AuthResponse, UpdateUserDto } from "@/types/auth.types"
+import { AuthResponse, ProfileDto, UpdateUserDto } from "@/types/auth.types"
 
 export const userService = {
     async getProfile(){
-        const response = await axiosWithAuth.get('/user/profile',)
+        const response = await axiosWithAuth.get<ProfileDto>('/user/profile',)
 
         return response
     },
