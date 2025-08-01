@@ -11,6 +11,7 @@ import InputField from '@/components/ui/field/Field'
 import { AuthDto } from '@/types/auth.types'
 import { useRouter } from 'next/navigation'
 import { DASHBOARD_PAGES } from '@/config/pages-url.config'
+import { Heading } from '@/components/ui/Heading/Heading'
 
 export function Auth() {
 	const { register, handleSubmit, reset, formState: {errors} } = useForm<AuthDto>()
@@ -44,10 +45,7 @@ export function Auth() {
 				className='w-1/4 m-auto text-white bg-sidebar rounded-xl p-layout'
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<div>
-					<h1 className='text-3xl font-medium'>Auth</h1>
-					<div className='my-3 h-0.5 bg-border w-full' />
-				</div>
+				<Heading title="Auth"></Heading>
 
 				<InputField
 					id='email'
