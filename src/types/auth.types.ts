@@ -26,7 +26,7 @@ export interface BothRespones{
 export interface ProfileDto{
     user: AuthResponse,
     statistics: {
-        labe: string,
+        label: string,
         value: string
     }[]
 }
