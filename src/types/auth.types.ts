@@ -14,6 +14,12 @@ export interface AuthResponse{
     intervalsCount?: number
 }
 
+export interface BothRespones{
+    user: AuthResponse,
+    accessToken?: string
+}
+
+
 export interface UpdateUserDto{
     email?: string,
     name?: string,
