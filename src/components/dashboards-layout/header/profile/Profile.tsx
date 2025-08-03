@@ -8,9 +8,18 @@ export function Profile() {
 
 	return (
 		<div className='absolute top-big-layout right-big-layout'>
-			{isLoading ? <Loader /> : <div>
-                Profile
-                </div>}
+			{isLoading ? <Loader /> : (
+                <div className='flex text-white items-center'>
+					<div className='mr-3'>
+						<p className='font-bold -mb-1'>{data?.data.user.name}</p>
+						<p className='text-sm opacity-40'>{data?.data.user.email}</p>
+					</div>
+
+					<div className='w-10 h-10 flex justify-center items-center text-2xl text-white bg-white/20 rounded uppercase'>
+						{data?.data.user.name?.charAt(0) || 'A'}
+					</div>
+				</div>
+            )}
 		</div>
 	)
 }
