@@ -11,7 +11,7 @@ export function Statistics() {
 	return isLoading ? (
 		<Loader />
 	) : (
-		<div className='flex gap-3 justify-between'>
+		<div className='grid grid-cols-4 gap-2 justify-between'>
 			{data?.data.statistics.length ? (
 				data.data.statistics.map((statistic, index) => (
 					<div
