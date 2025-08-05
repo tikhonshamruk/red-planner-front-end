@@ -21,7 +21,7 @@ export interface BothRespones{
     accessToken?: string
 }
 
-/*--------------Profile-------------*/
+
 
 export interface ProfileDto{
     user: AuthResponse,
@@ -30,7 +30,9 @@ export interface ProfileDto{
         value: string
     }[]
 }
+/*--------------End Profile-------------*/
 
+/*--------------Profile Update-------------*/
 
 export interface UpdateUserDto{
     email?: string,
