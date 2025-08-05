@@ -9,7 +9,7 @@ export interface AuthResponse{
     updateAt: Date,
     email: string,
     name?: string,
-    workInternal?: number,
+    workInterval?: number,
     breakInterval?: number,
     intervalsCount?: number
 }
@@ -38,8 +38,8 @@ export interface UpdateUserDto{
     email?: string,
     name?: string,
     password?: string,
-    workInternal?: number,
-    breakInternal?: number,
+    workInterval?: number,
+    breakInterval?: number,
     intervalsCount?: number
 }
 

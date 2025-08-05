@@ -5,6 +5,7 @@ import { useInitialData } from "./useInitialData"
 import { Heading } from "@/components/ui/Heading/Heading"
 import InputField from "@/components/ui/field/Field"
 import { Button } from "@/components/ui/buttons/Button"
+import { useUpdateSettings } from "./useUpdateSettings"
 
 export function Settings() {
 
@@ -12,20 +13,23 @@ export function Settings() {
     mode:'onChange'
   })
 
+  const {mutate,isPending} = useUpdateSettings()
+
   useInitialData(reset)
 
   const onSubmit:SubmitHandler<UpdateUserDto> = data =>{
     console.log('Данные формы', data)
+    mutate(data)
   }
 
   return (<div>
     <form
-            className='w-1/4 m-auto text-white bg-sidebar rounded-xl p-layout'
+            className=' text-white bg-sidebar rounded-xl p-layout '
             onSubmit={handleSubmit(onSubmit)}
           >
-            <Heading title="Settings"></Heading>
-    
-            <InputField
+            <div className="grid grid-cols-2 gap-3">
+               <div className="flex flex-col gap-4">
+               <InputField
               id='email'
               label='Email:'
               placeholder='Enter email:'
@@ -42,15 +46,64 @@ export function Settings() {
                 required: 'name is required'
               })}
             />
-            
-          </form>
+
+            <InputField
+              id='password'
+              label='Password:'
+              placeholder='Enter password:'
+              {...register('password', {
+                required: 'password is required'
+              })}
+            />
+
+            </div>
+
+            <div className="flex flex-col gap-4">
+               <InputField
+              id='workInterval'
+              label='workInterval:'
+              placeholder='Enter workInterval:'
+              {...register('workInterval', {
+                required: 'workInterval is required',
+                valueAsNumber:true
+              })}
+            />
     
-           <div className='mt-4 text-center'>
-              <Button 
+            <InputField
+              id='breakInterval'
+              label='breakInterval:'
+              placeholder='Enter breakInterval:'
+              {...register('breakInterval', {
+                required: 'breakInterval is required',
+                valueAsNumber:true
+              })}
+            />
+
+            <InputField
+              id='intervalsCount'
+              label='intervalsCount:'
+              placeholder='Enter intervalsCount:'
+              {...register('intervalsCount', {
+                required: 'intervalsCount is required',
+                valueAsNumber:true
+              })}
+            />
+
+            </div>
+            </div>
+           
+           
+            <div className='mt-4 text-center'>
+              <Button disabled={isPending}
+              type="submit"
                 className='text-sm text-blue-400 hover:underline'
               >
                 Update
               </Button>
             </div>
+
+          </form>
+    
+           
   </div>)
 }

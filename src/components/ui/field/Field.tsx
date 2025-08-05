@@ -15,7 +15,7 @@ interface InputFieldProps {
 
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     ( 
-        { label, id, extra, type, placeholder, variant, state, disabled, error,...rest },
+        { label, id, extra, type, placeholder, variant, state, disabled, error, ...rest },
     ref
 ) => {
     return (
@@ -43,6 +43,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             ? "border-green-500 text-green-500 placeholder:text-green-500 dark:!border-green-400 dark:!text-green-400 dark:placeholder:!text-green-400"
             : "border-gray-200 dark:!border-white/10 dark:text-white"
         }`}
+
         {...rest}
       />
        {error && <p className="mt-1 text-sm text-red-600">{error}</p>} {/* Отображение ошибки */}
