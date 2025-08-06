@@ -5,9 +5,9 @@ enum Priority {
 }
 
 export interface TasksDto{
-    id: string,
-    createdAt: Date,
-    updatedAt : Date,
+    id?:string,
+    createdAt?: Date,
+    updatedAt? : Date,
     name?: string,
     priority?: Priority,
     isComleted?: boolean
