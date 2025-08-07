@@ -1,4 +1,7 @@
 export function useTaskDnd(){
 
-    return {}
+    const onDragEnd = () =>{
+
+    }
+    return {onDragEnd}
 }
