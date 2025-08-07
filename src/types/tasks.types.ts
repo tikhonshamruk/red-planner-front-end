@@ -10,5 +10,5 @@ export interface TasksDto{
     updatedAt? : Date,
     name?: string,
     priority?: Priority,
-    isComleted?: boolean
+    isCompleted?: boolean
 }
