@@ -22,13 +22,14 @@ export function ListRowParent({value, items, label} : IListRowParent) {
               key={item.id}
               >
                 {provide =>(
-                  <div ref={provide.innerRef} >
+                  <div ref={provide.innerRef} {...provide.draggableProps} {...provide.dragHandleProps}>
                     <ListRow item={item}/>
                   </div>
                 )}
               </Draggable>
             ))
           }
+          {provided.placeholder}
         </div>
        )}
     </Droppable>

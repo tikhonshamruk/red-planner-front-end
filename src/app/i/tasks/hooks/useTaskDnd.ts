@@ -15,6 +15,7 @@ export function useTaskDnd(){
             mutate({
                 id: result.draggableId,
                 data: {
+                    id: result.draggableId,
                     isCompleted:true
                 }
             })
