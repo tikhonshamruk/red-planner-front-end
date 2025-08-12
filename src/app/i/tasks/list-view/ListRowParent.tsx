@@ -1,5 +1,7 @@
 import { TasksDto } from "@/types/tasks.types";
-import { Droppable } from "@hello-pangea/dnd";
+import { Draggable, Droppable } from "@hello-pangea/dnd";
+import { filterTasks } from "../filters-tasks";
+import { ListRow } from "./ListRow";
 
 interface IListRowParent {
     value: string,
@@ -9,9 +11,24 @@ interface IListRowParent {
 
 export function ListRowParent({value, items, label} : IListRowParent) {
   return (
-    <Droppable droppableId="">
+    <Droppable droppableId={value}>
        {provided =>(
         <div ref={provided.innerRef} {...provided.droppableProps}>
+          {
+            filterTasks(items, value)?.map((item,index)=>(
+              <Draggable
+              draggableId={item.id}
+              index={index}
+              key={item.id}
+              >
+                {provide =>(
+                  <div ref={provide.innerRef} >
+                    <ListRow item={item}/>
+                  </div>
+                )}
+              </Draggable>
+            ))
+          }
         </div>
        )}
     </Droppable>

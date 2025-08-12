@@ -5,7 +5,7 @@ enum Priority {
 }
 
 export interface TasksDto{
-    id?:string,
+    id:string,
     createdAt?: Date,
     updatedAt? : Date,
     name?: string,
