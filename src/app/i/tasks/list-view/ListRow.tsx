@@ -1,13 +1,21 @@
+import { useForm } from "react-hook-form";
 import { TasksDto } from "../../../../types/tasks.types";
 
-interface ListRowProps {
+interface IListRow {
     item: TasksDto;
 }
 
-//Компонент, который отобржает строку задач в списке с возможность редоктриования
-// отметки выполнения, изменения приоритета и удаления
-export function ListRow({ item }: ListRowProps) {
-    return (<div className="text-white flex ">ListRow - {item.name} 
-    <div>CreatedAt - {item.createdAt}</div>
+export function ListRow({ item }: IListRow) {
+
+    const {register, control, watch} = useForm({
+        defaultValues:{
+            name: item.name, 
+            isCompleted: item.isCompleted,
+            createdAt: item.createdAt,
+            priority: item.priority
+        }
+    })
+    return (<div>
+        <div></div>
     </div>);
 }
