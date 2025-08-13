@@ -1,17 +1,20 @@
-import {useState} from 'react'
+import { useState } from 'react'
+import {
+	DayPicker,
+	OnSelectHandler,
+	SelectSingleEventHandler
+} from 'react-day-picker'
+import 'react-day-picker/style.css'
 
-import {DayPicker, SelectSingleEventHandler} from 'react-day-picker'
-import "react-day-picker/style.css";
-
-interface IDatePicker{
-  onChange: (value:string) => void, //много вопрос к этой строчке 
-  value: string
+interface IDatePicker {
+	onChange: (value: string) => void //много вопрос к этой строчке
+	value: string
 }
 
-export function MyDatePicker({onChange,value}:IDatePicker) {
-  const [selected, setSelected] = useState<Date>();
+export function DatePicker({ onChange, value }: IDatePicker) {
+	const [selected, setSelected] = useState<Date>()
 
-  const handleDaySelect: SelectSingleEventHandler = date => {
+	const handleDaySelect: OnSelectHandler<Date | undefined> = date => {
 		const ISOdate = date?.toISOString()
 
 		setSelected(date)
@@ -22,15 +25,11 @@ export function MyDatePicker({onChange,value}:IDatePicker) {
 		}
 	}
 
-  return (
-    <DayPicker
-      fromYear={2023}
-						toYear={2054}
-						mode='single'
-						defaultMonth={selected}
-						selected={selected}
-						onSelect={handleDaySelect}
-						weekStartsOn={1}
-    />
-  );
+	return (
+		<DayPicker
+			mode='single'
+			selected={selected}
+			onSelect={handleDaySelect}
+		/>
+	)
 }

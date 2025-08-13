@@ -1,6 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
 import { TasksDto } from "../../../../types/tasks.types";
-import { MyDatePicker } from "@/components/ui/task-edit/date-picker/DatePicker";
+import { DatePicker } from "@/components/ui/task-edit/date-picker/DatePicker";
 
 interface IListRow {
     item: TasksDto;
@@ -16,14 +16,14 @@ export function ListRow({ item }: IListRow) {
             priority: item.priority
         }
     })
-    return (<div className="text-white/30">
+    return (<div className="text-white/30 flex flex-row">
         div
         	<div>
 				<Controller
 					control={control}
 					name='createdAt'
 					render={({ field: { value, onChange } }) => (
-						<MyDatePicker
+						<DatePicker
 							onChange={onChange}
 							value={''}
 						/>
