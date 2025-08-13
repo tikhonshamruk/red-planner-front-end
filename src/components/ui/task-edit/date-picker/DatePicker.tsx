@@ -3,6 +3,10 @@ import {useState} from 'react'
 import {DayPicker} from 'react-day-picker'
 import "react-day-picker/style.css";
 
+interface IDatePicker{
+  value: string
+}
+
 export function MyDatePicker() {
   const [selected, setSelected] = useState<Date>();
 

@@ -13,7 +13,9 @@ export function ListRowParent({value, items, label} : IListRowParent) {
   return (
     <Droppable droppableId={value}>
        {provided =>(
-        <div ref={provided.innerRef} {...provided.droppableProps}>
+        <div ref={provided.innerRef} {...provided.droppableProps}
+        className="mb-7">
+          <div className="text-red-500">{value}</div>
           {
             filterTasks(items, value)?.map((item,index)=>(
               <Draggable
@@ -21,8 +23,8 @@ export function ListRowParent({value, items, label} : IListRowParent) {
               index={index}
               key={item.id}
               >
-                {provide =>(
-                  <div ref={provide.innerRef} {...provide.draggableProps} {...provide.dragHandleProps}>
+                {provided =>(
+                  <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                     <ListRow item={item}/>
                   </div>
                 )}

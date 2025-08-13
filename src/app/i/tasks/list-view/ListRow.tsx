@@ -7,5 +7,7 @@ interface ListRowProps {
 //Компонент, который отобржает строку задач в списке с возможность редоктриования
 // отметки выполнения, изменения приоритета и удаления
 export function ListRow({ item }: ListRowProps) {
-    return <div className="text-white">ListRow - {item.name}</div>;
+    return (<div className="text-white flex ">ListRow - {item.name} 
+    <div>CreatedAt - {item.createdAt}</div>
+    </div>);
 }

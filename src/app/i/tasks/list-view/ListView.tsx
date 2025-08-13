@@ -16,6 +16,7 @@ export function ListView() {
         {
           COLUMNS.map(columns =>(
             <ListRowParent
+            key={columns.value}
             items={items}
             label = {columns.label}
             value = {columns.value}
