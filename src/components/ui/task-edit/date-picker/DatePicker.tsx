@@ -1,9 +1,9 @@
+import dayjs from 'dayjs'
 import { useState } from 'react'
-import {
-	DayPicker,
-	OnSelectHandler
-} from 'react-day-picker'
+import { DayPicker, OnSelectHandler } from 'react-day-picker'
 import 'react-day-picker/style.css'
+
+import { useOutside } from '@/hooks/useOutside'
 
 interface IDatePicker {
 	onChange: (value: string) => void //много вопрос к этой строчке
@@ -12,6 +12,8 @@ interface IDatePicker {
 
 export function DatePicker({ onChange, value }: IDatePicker) {
 	const [selected, setSelected] = useState<Date>()
+
+	const { isShow, setIsShow, ref } = useOutside(false)
 
 	const handleDaySelect: OnSelectHandler<Date | undefined> = date => {
 		const ISOdate = date?.toISOString()
@@ -25,10 +27,20 @@ export function DatePicker({ onChange, value }: IDatePicker) {
 	}
 
 	return (
-		<DayPicker
-			mode='single'
-			selected={selected}
-			onSelect={handleDaySelect}
-		/>
+		<div
+			className='relative'
+			ref={ref}
+		>
+			<button onClick={() => setIsShow(!isShow)}>
+				{value ? dayjs(value).format('LL') : 'Click for select'}
+			</button>
+			{isShow && (
+				<DayPicker
+					mode='single'
+					selected={selected}
+					onSelect={handleDaySelect}
+				/>
+			)}
+		</div>
 	)
 }
