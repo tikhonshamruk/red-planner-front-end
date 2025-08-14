@@ -29,6 +29,8 @@ body {
 	}
 }
 
+// настройки для input, добавление класса defaultCheckbox к input который взят из MaterialUI и т.д.
+
 input.defaultCheckbox {
 	color: white;
 }
@@ -53,6 +55,8 @@ input:checked.defaultCheckbox::before {
 	opacity: 1;
 }
 
+// анимация кастомная
+
 .slide {
 	animation: slide_anim 0.5s;
 }
@@ -65,6 +69,22 @@ input:checked.defaultCheckbox::before {
 
 	to {
 		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+//анимация кастомная
+
+.animation-opacity {
+	animation: opacity_anim 0.5s;
+}
+
+@keyframes opacity_anim {
+	from {
+		opacity: 0;
+	}
+
+	to {
 		opacity: 1;
 	}
 }

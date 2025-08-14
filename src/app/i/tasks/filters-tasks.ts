@@ -14,13 +14,13 @@ export const filterTasks = (tasks: TasksDto[] | undefined, value: string) => {
 			return tasks?.filter(
 				task =>
 					dayjs(task.createdAt).isSame(FILTERS.today, 'day') &&
-					!task.isCompleted
+					!task.isComleted
 			)
 		case 'tommorow':
 			return tasks?.filter(
 				task =>
 					dayjs(task.createdAt).isSame(FILTERS.tommorow, 'day') &&
-					!task.isCompleted
+					!task.isComleted
 			)
 		case 'on-this-week':
 			return tasks?.filter(
@@ -28,14 +28,14 @@ export const filterTasks = (tasks: TasksDto[] | undefined, value: string) => {
 					dayjs(task.createdAt).isSameOrBefore(
 						FILTERS['on-this-week'],
 						'day'
-					) && !task.isCompleted
+					) && !task.isComleted
 			)
 		case 'on-next-week':
 			return tasks?.filter(
 				item =>
 					dayjs(item.createdAt).isAfter(FILTERS['on-this-week']) &&
 					dayjs(item.createdAt).isSameOrBefore(FILTERS['on-next-week']) &&
-					!item.isCompleted
+					!item.isComleted
 			)
 
 		case 'later':
@@ -43,10 +43,10 @@ export const filterTasks = (tasks: TasksDto[] | undefined, value: string) => {
 				item =>
 					(dayjs(item.createdAt).isAfter(FILTERS['on-next-week']) ||
 						!item.createdAt) &&
-					!item.isCompleted
+					!item.isComleted
 			)
 		case 'completed':
-			return tasks?.filter(item => item.isCompleted)
+			return tasks?.filter(item => item.isComleted)
 		default:
 			return []
 	}

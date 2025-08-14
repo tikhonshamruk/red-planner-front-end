@@ -35,11 +35,13 @@ export function DatePicker({ onChange, value }: IDatePicker) {
 				{value ? dayjs(value).format('LL') : 'Click for select'}
 			</button>
 			{isShow && (
-				<DayPicker
+				<div className='absolute p-2.5 bg-sidebar'>
+					<DayPicker
 					mode='single'
 					selected={selected}
 					onSelect={handleDaySelect}
 				/>
+				</div>
 			)}
 		</div>
 	)
