@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import {
 	DayPicker,
-	OnSelectHandler,
-	SelectSingleEventHandler
+	OnSelectHandler
 } from 'react-day-picker'
 import 'react-day-picker/style.css'
 
