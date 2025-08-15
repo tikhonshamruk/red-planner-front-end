@@ -35,11 +35,12 @@ export function DatePicker({ onChange, value }: IDatePicker) {
 				{value ? dayjs(value).format('LL') : 'Click for select'}
 			</button>
 			{isShow && (
-				<div className='absolute p-2.5 bg-sidebar'>
+				<div className='absolute p-2.5 slide bg-sidebar'>
 					<DayPicker
 					mode='single'
 					selected={selected}
 					onSelect={handleDaySelect}
+					weekStartsOn={1}
 				/>
 				</div>
 			)}
