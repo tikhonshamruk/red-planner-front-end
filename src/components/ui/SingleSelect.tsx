@@ -11,10 +11,10 @@ export interface IOption {
 interface IDateSelect{
   data: IOption[]
   onChange: (value: string) => void
-  value: string
+  value: string | undefined
 }
 
-export function SingleSelect({onChange,value}: IDateSelect) {
+export function SingleSelect({data,onChange,value}: IDateSelect) {
   return (
     <div>
       <FormControl fullWidth>
@@ -22,13 +22,14 @@ export function SingleSelect({onChange,value}: IDateSelect) {
   <Select
     labelId="demo-simple-select-label"
     id="demo-simple-select"
-    value={age}
+    value={value}
     label="Age"
-    onChange={handleChange}
-  >
-    <MenuItem value={10}>Ten</MenuItem>
-    <MenuItem value={20}>Twenty</MenuItem>
-    <MenuItem value={30}>Thirty</MenuItem>
+    onChange={(e) => onChange(e.target.value as string)}
+  >{
+    data.map(item =>(
+      <MenuItem value={item.value}>{item.label}</MenuItem>
+    ))
+  }
   </Select>
 </FormControl>
     </div>

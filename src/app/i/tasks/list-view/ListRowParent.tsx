@@ -14,7 +14,7 @@ export function ListRowParent({value, items, label} : IListRowParent) {
     <Droppable droppableId={value}>
        {provided =>(
         <div ref={provided.innerRef} {...provided.droppableProps}
-        className="mb-7">
+        className="mb-7 flex flex-row justify-between">
           <div className="text-red-500">{value}</div>
           {
             filterTasks(items, value)?.map((item,index)=>(

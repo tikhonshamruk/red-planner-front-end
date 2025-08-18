@@ -31,7 +31,7 @@ export function DatePicker({ onChange, value }: IDatePicker) {
 			className='relative'
 			ref={ref}
 		>
-			<button onClick={() => setIsShow(!isShow)}>
+			<button onClick={() => setIsShow(!isShow)} className='bg-brandLinear'>
 				{value ? dayjs(value).format('LL') : 'Click for select'}
 			</button>
 			{isShow && (

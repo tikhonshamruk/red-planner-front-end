@@ -2,6 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { TasksDto } from "../../../../types/tasks.types";
 import { DatePicker } from "@/components/ui/task-edit/date-picker/DatePicker";
 import { SingleSelect } from "@/components/ui/SingleSelect";
+import { useEffect } from "react";
 
 interface IListRow {
     item: TasksDto;
@@ -17,8 +18,19 @@ export function ListRow({ item }: IListRow) {
             priority: item.priority
         }
     })
+
+      useEffect(() => {
+        const subscription = watch((value) => {
+            console.log('Field changed:', value);
+            // Можно обновлять состояние или выполнять другие действия
+        });
+        return () => subscription.unsubscribe();
+    }, [watch]);
+
     return (<div className="text-white/30 flex flex-row">
-        div
+        <div>
+            {item.name}
+        </div>
         	<div>
 				<Controller
 					control={control}
@@ -26,7 +38,7 @@ export function ListRow({ item }: IListRow) {
 					render={({ field: { value, onChange } }) => (
 						<DatePicker
 							onChange={onChange}
-							value={''}
+							value={value || ''}
 						/>
 					)}
 				/>
@@ -42,7 +54,8 @@ export function ListRow({ item }: IListRow) {
 								label: item
 							}))}
 							onChange={onChange}
-							value={value}
+							value={value || ''}
+                            />
                 )}
                 />
             </div>
