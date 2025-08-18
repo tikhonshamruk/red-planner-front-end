@@ -1,6 +1,7 @@
 import { Controller, useForm } from "react-hook-form";
 import { TasksDto } from "../../../../types/tasks.types";
 import { DatePicker } from "@/components/ui/task-edit/date-picker/DatePicker";
+import { SingleSelect } from "@/components/ui/SingleSelect";
 
 interface IListRow {
     item: TasksDto;
@@ -30,5 +31,20 @@ export function ListRow({ item }: IListRow) {
 					)}
 				/>
 			</div>
+            <div>
+                <Controller
+                control={control}
+                name="priority"
+                render={({field: {value, onChange}})=>(
+                    <SingleSelect
+                   data={['high', 'medium', 'low'].map(item => ({
+								value: item,
+								label: item
+							}))}
+							onChange={onChange}
+							value={value}
+                )}
+                />
+            </div>
     </div>);
 }
