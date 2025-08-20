@@ -16,7 +16,7 @@ export function useTaskDnd(){
                 id: result.draggableId,
                 data: {
                     id: result.draggableId,
-                    isCompleted:true
+                    isComleted:true
                 }
             })
         }
