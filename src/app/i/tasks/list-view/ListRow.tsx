@@ -26,6 +26,7 @@ export function ListRow({ item }: IListRow) {
         });
         return () => subscription.unsubscribe();
     }, [watch]);
+    // я не понимаю , почему мы здесь отписываемся? 
 
     return (<div className="text-white/30 flex flex-row">
         <div>
