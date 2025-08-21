@@ -13,18 +13,18 @@ export const filterTasks = (tasks: TasksDto[] | undefined, value: string) => {
 		case 'today':
 			return tasks?.filter(
 				task =>
-					dayjs(task.createdAt).isSame(FILTERS.today, 'day') &&
-					!task.isComleted
+					dayjs(task.createdAt).isSame(FILTERS.today, 'day') && !task.isComleted
 			)
-		case 'tommorow':
+		case 'tomorrow':
 			return tasks?.filter(
 				task =>
-					dayjs(task.createdAt).isSame(FILTERS.tommorow, 'day') &&
+					dayjs(task.createdAt).isSame(FILTERS.tomorrow, 'day') &&
 					!task.isComleted
 			)
 		case 'on-this-week':
 			return tasks?.filter(
-				task =>
+				task =>dayjs(task.createdAt).isAfter(FILTERS.today, 'day') &&
+				dayjs(task.createdAt).isAfter(FILTERS.tomorrow, 'day') &&
 					dayjs(task.createdAt).isSameOrBefore(
 						FILTERS['on-this-week'],
 						'day'

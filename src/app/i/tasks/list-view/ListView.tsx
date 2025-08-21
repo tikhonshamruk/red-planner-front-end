@@ -19,7 +19,7 @@ export function ListView() {
             key={columns.value}
             items={items}
             label = {columns.label}
-            value = {columns.value}
+            value = {columns.value} 
             />
           )
           )

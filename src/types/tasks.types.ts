@@ -12,3 +12,9 @@ export interface TasksDto {
 	priority?: Priority
 	isComleted?: boolean
 }
+
+export interface CreateTaskDto{
+	createdAt: string,
+	name?: string, 
+	isComleted: boolean
+}
