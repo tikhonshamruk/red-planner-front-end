@@ -13,6 +13,8 @@ export interface TasksDto {
 	isComleted?: boolean
 }
 
+export type UpdateTaskDto = Omit<TasksDto, 'id' | 'updatedAt'>
+
 export interface CreateTaskDto{
 	createdAt: string,
 	name?: string, 
