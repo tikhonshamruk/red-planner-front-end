@@ -6,7 +6,7 @@ export function useUpdateTask(){
 
     const queryClient = useQueryClient()
     
-    const {mutate} = useMutation({
+    const {mutate: mutateUpdateTask} = useMutation({
         mutationKey: ['update task'],
         mutationFn: ({id, data}:{id:string, data: TasksDto}) => taskService.updateTask(id,data),
         onSuccess(){
@@ -15,5 +15,5 @@ export function useUpdateTask(){
             })
         }
     })
-    return {mutate}
+    return {mutateUpdateTask}
 }
